@@ -1,6 +1,7 @@
 exports.up = function(knex) {
   return knex.schema
     .createTable("users", table => {
+      table.increments("id");
       table.primary();
       table.string("first_name", 128).notNullable();
       table.string("last_name", 128);
@@ -13,7 +14,7 @@ exports.up = function(knex) {
         .unique()
         .notNullable();
       table.string("password", 128).notNullable();
-      table.date("birthdate").notNullable();
+      table.date("birthdate");
       table.integer("age").notNullable();
       table.string("gender", 128).notNullable();
       table.date("joined").default(Date.now());
@@ -71,7 +72,7 @@ exports.up = function(knex) {
       table.primary(["userID", "targetID"]);
       table.boolean("liked");
       table.boolean("matched");
-      table.date("timestamp".defaultTo(Date.now()));
+      table.date("timestamp").defaultTo(Date.now());
     })
     .createTable("photo", table => {
       table.primary();

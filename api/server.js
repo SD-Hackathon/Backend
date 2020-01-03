@@ -8,4 +8,6 @@ server.use(express.json());
 server.use(cors());
 server.use(helmet());
 
+const dbRouter = require('../api/users/users-router');
+server.use('/api', dbRouter)
 module.exports = server;
